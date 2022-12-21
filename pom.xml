@@ -114,13 +114,13 @@
         <dependency>
             <!--  Required if you're using classes from the security package. -->
             <groupId>org.bouncycastle</groupId>
-            <artifactId>bcprov-jdk15on</artifactId>
+            <artifactId>bcprov-jdk18on</artifactId>
             <optional>true</optional>
         </dependency>
         <dependency>
             <!--  Required if you're using classes from the security package. -->
             <groupId>org.bouncycastle</groupId>
-            <artifactId>bcpkix-jdk15on</artifactId>
+            <artifactId>bcpkix-jdk18on</artifactId>
             <optional>true</optional>
         </dependency>
 
