@@ -24,23 +24,6 @@
         <automatic.module.name>net.shibboleth.utilities.java.support</automatic.module.name>
     </properties>
 
-    <repositories>
-        <repository>
-            <id>shib-release</id>
-            <url>https://build.shibboleth.net/nexus/content/groups/public</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-        <repository>
-            <id>shib-snapshot</id>
-            <url>https://build.shibboleth.net/nexus/content/repositories/snapshots</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-        </repository>
-    </repositories>
-
     <scm>
         <connection>scm:git:https://git.shibboleth.net/git/${project.artifactId}</connection>
         <developerConnection>scm:git:git@git.shibboleth.net:${project.artifactId}</developerConnection>
