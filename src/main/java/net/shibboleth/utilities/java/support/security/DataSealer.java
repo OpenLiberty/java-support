@@ -284,11 +284,10 @@ public class DataSealer extends AbstractInitializableComponent {
                 final int dataSize = inputDataStream.read(data);
 
                 final byte[] plaintext = new byte[cipher.getOutputSize(dataSize)];
-                final int outputLen = cipher.update(data, 0, dataSize, plaintext, 0);
-                cipher.doFinal(plaintext, outputLen);
+                final int outputLen = cipher.doFinal(data, 0, dataSize, plaintext);
 
                 // Pass the plaintext into the subroutine for processing.
-                return extractAndCheckDecryptedData(plaintext);
+                return extractAndCheckDecryptedData(plaintext, 0, outputLen);
             }
 
         } catch (final KeyNotFoundException e) {
@@ -311,15 +310,20 @@ public class DataSealer extends AbstractInitializableComponent {
      * Extract the GZIP'd data and test for expiration before returning it.
      * 
      * @param decryptedBytes the data we are looking at
+     * @param decryptedOffset offset into the buffer
+     * @param decryptedLen length of data in the buffer
      * 
      * @return the decoded data if it is valid and unexpired
      * @throws DataSealerException if the data cannot be unwrapped and verified
      */
-    @Nonnull private String extractAndCheckDecryptedData(@Nonnull @NotEmpty final byte[] decryptedBytes)
+    @Nonnull private String extractAndCheckDecryptedData(@Nonnull @NotEmpty final byte[] decryptedBytes,
+            final int decryptedOffset, final int decryptedLen)
             throws DataSealerException {
         
         try (final DataInputStream dataInputStream =
-                new DataInputStream(new GZIPInputStream(new ByteArrayInputStream(decryptedBytes)))) {
+                new DataInputStream(
+                        new GZIPInputStream(
+                                new ByteArrayInputStream(decryptedBytes, decryptedOffset, decryptedLen)))) {
 
             final long decodedExpirationTime = dataInputStream.readLong();
             if (decodedExpirationTime > 0 && System.currentTimeMillis() > decodedExpirationTime) {
@@ -420,8 +424,7 @@ public class DataSealer extends AbstractInitializableComponent {
                 final byte[] plaintext = byteStream.toByteArray();
 
                 final byte[] encryptedData = new byte[cipher.getOutputSize(plaintext.length)];
-                int outputLen = cipher.update(plaintext, 0, plaintext.length, encryptedData, 0);
-                outputLen += cipher.doFinal(encryptedData, outputLen);
+                final int outputLen = cipher.doFinal(plaintext, 0, plaintext.length, encryptedData);
 
                 try (final ByteArrayOutputStream finalByteStream = new ByteArrayOutputStream();
                         final DataOutputStream finalDataStream = new DataOutputStream(finalByteStream)) {
@@ -479,17 +482,15 @@ public class DataSealer extends AbstractInitializableComponent {
             byte[] plaintext = "test".getBytes(StandardCharsets.UTF_8);
             
             final byte[] encryptedData = new byte[cipher.getOutputSize(plaintext.length)];
-            int outputLen = cipher.update(plaintext, 0, plaintext.length, encryptedData, 0);
-            cipher.doFinal(encryptedData, outputLen);
+            int outputLen = cipher.doFinal(plaintext, 0, plaintext.length, encryptedData);
 
             cipher.init(Cipher.DECRYPT_MODE, key, params);
             cipher.updateAAD("aad".getBytes(StandardCharsets.UTF_8));
             
             plaintext = new byte[cipher.getOutputSize(encryptedData.length)];
-            outputLen = cipher.update(encryptedData, 0, encryptedData.length, plaintext, 0);
-            cipher.doFinal(plaintext, outputLen);
+            outputLen = cipher.doFinal(encryptedData, 0, encryptedData.length, plaintext);
             
-            decrypted = new String(plaintext, StandardCharsets.UTF_8);
+            decrypted = new String(plaintext, 0, outputLen, StandardCharsets.UTF_8);
             
         } catch (final IllegalStateException | GeneralSecurityException e) {
             log.error("Round trip encryption/decryption test unsuccessful: {}", e.getMessage());
