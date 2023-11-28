@@ -7,16 +7,12 @@
     <parent>
         <groupId>net.shibboleth</groupId>
         <artifactId>parent</artifactId>
-        <version>11.3.5</version>
+        <version>11.3.6-SNAPSHOT</version>
     </parent>
 
     <name>java-support</name>
     <groupId>net.shibboleth.utilities</groupId>
     <artifactId>java-support</artifactId>
-    <!-- If you change the version you *MUST* provoke a jenkins 'site'
-         build (to populate the javadoc, which is consumed by the
-         Jenkins 'nightly' builds).
-    -->
     <version>8.4.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
