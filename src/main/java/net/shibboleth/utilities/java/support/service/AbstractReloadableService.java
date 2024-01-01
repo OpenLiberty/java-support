@@ -180,6 +180,7 @@ public abstract class AbstractReloadableService<T> extends AbstractIdentifiableI
                 throw new ComponentInitializationException(getLogPrefix() + " could not perform initial load", e);
             }
             log.error("{} Initial load failed", getLogPrefix(), e);
+            reloadFailureCause = e;
             
             if (reloadCheckDelay.isNegative() || reloadCheckDelay.isZero()) {
                 log.error("{} No further attempts will be made to reload", getLogPrefix());
