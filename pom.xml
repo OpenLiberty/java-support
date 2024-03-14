@@ -17,14 +17,9 @@
     <packaging>jar</packaging>
 
     <properties>
+        <shibboleth.projectName>java-support</shibboleth.projectName>
         <automatic.module.name>net.shibboleth.utilities.java.support</automatic.module.name>
     </properties>
-
-    <scm>
-        <connection>scm:git:https://git.shibboleth.net/git/${project.artifactId}</connection>
-        <developerConnection>scm:git:git@git.shibboleth.net:${project.artifactId}</developerConnection>
-        <url>https://git.shibboleth.net/view/?p=${project.artifactId}.git</url>
-    </scm>
 
     <dependencies>
         <!-- Compile Dependencies -->
@@ -156,13 +151,6 @@
             </dependencies>
         </profile>
     </profiles>
-
-    <distributionManagement>
-        <site>
-            <id>site</id>
-            <url>scp:${shibboleth.site.deploy.url}${project.artifactId}/${project.version}/</url>
-        </site>
-    </distributionManagement>
 
     <build>
         <plugins>
