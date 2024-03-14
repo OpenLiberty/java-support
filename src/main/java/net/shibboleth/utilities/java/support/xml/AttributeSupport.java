@@ -346,6 +346,11 @@ public final class AttributeSupport {
         if (valueComponents.length == 1) {
             return QNameSupport.constructQName(attribute.lookupNamespaceURI(null), valueComponents[0], null);
         }
+        
+        if (valueComponents.length > 2) {
+            throw new IllegalStateException("Attribute value contained multiple colons");
+        }
+                    
         return QNameSupport.constructQName(attribute.lookupNamespaceURI(valueComponents[0]), valueComponents[1],
                 valueComponents[0]);
     }

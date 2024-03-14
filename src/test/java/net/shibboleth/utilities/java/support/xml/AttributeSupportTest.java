@@ -648,6 +648,33 @@ public class AttributeSupportTest {
 
     }
 
+    @Test
+    public void testQNameContent() throws XMLParserException {
+        final DocumentBuilder builder = parserPool.getBuilder();
+        final Document doc = builder.newDocument();
+        final Attr attr = doc.createAttributeNS("https://example", "foo");
+        attr.setNodeValue("foo");
+        
+        QName qname = AttributeSupport.getAttributeValueAsQName(attr);
+        Assert.assertEquals(qname.getLocalPart(), "foo");
+        Assert.assertEquals(qname.getNamespaceURI(), "");
+        Assert.assertEquals(qname.getPrefix(), "");
+
+        attr.setNodeValue("bar:foo");
+        qname = AttributeSupport.getAttributeValueAsQName(attr);
+        Assert.assertEquals(qname.getLocalPart(), "foo");
+        Assert.assertEquals(qname.getNamespaceURI(), "");
+        Assert.assertEquals(qname.getPrefix(), "bar");
+
+        attr.setNodeValue("bar:foo:baz");
+        try {
+            qname = AttributeSupport.getAttributeValueAsQName(attr);
+            Assert.fail("Expected IllegalStateException");
+        } catch (final IllegalStateException e) {
+            // expected
+        }
+    }
+    
     private <T> T nullValue() {
         return null;
     }
