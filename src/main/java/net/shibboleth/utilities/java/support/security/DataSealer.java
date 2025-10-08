@@ -178,9 +178,18 @@ public class DataSealer extends AbstractInitializableComponent {
                 throw new ConstraintViolationException(
                         "DataSealer nodePrefix cannot be longer than " + Integer.toString(PREFIX_LEN) + " characters");
             } else if (nodePrefix.length() < PREFIX_LEN) {
-                nodePrefix = nodePrefix.concat(new String("X").repeat(PREFIX_LEN - nodePrefix.length()));
+                nodePrefix = nodePrefix.concat(repeatChar('X', PREFIX_LEN - nodePrefix.length()));
             }
         }
+    }
+
+    private static String repeatChar(final char ch, final int count) {
+        if (count <= 0) {
+            return "";
+        }
+        final char[] buf = new char[count];
+        java.util.Arrays.fill(buf, ch);
+        return new String(buf);
     }
 
     /** {@inheritDoc} */

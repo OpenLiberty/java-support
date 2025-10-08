@@ -17,6 +17,7 @@
 
 package net.shibboleth.utilities.java.support.security.impl;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -65,8 +66,7 @@ public class IPRangeAccessControl extends AbstractIdentifiableInitializableCompo
     public void setAllowedRanges(@Nonnull @NonnullElements final Collection<IPRange> ranges) {
         ComponentSupport.ifInitializedThrowUnmodifiabledComponentException(this);
         Constraint.isNotNull(ranges, "IPRange collection cannot be null");
-        
-        allowedRanges = List.copyOf(ranges);
+        allowedRanges = Collections.unmodifiableList(new ArrayList<>(ranges));
     }
 
     /** {@inheritDoc} */

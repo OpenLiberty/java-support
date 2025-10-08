@@ -37,7 +37,7 @@ import net.shibboleth.utilities.java.support.logic.Constraint;
  * 
  * @deprecated
  */
-@Deprecated(since="8.4.0", forRemoval=true)
+@Deprecated
 public class ThreadLocalHttpServletResponseProxy implements HttpServletResponse {
 
     /** {@inheritDoc} */

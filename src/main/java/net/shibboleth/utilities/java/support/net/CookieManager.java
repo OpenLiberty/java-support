@@ -120,7 +120,7 @@ public final class CookieManager extends AbstractInitializableComponent {
      *
      * @param request current HTTP request
      */
-    @Deprecated(since = "4.3", forRemoval = true)
+    @Deprecated
     public void setHttpServletRequest(@Nullable final HttpServletRequest request) {
         ComponentSupport.ifInitializedThrowUnmodifiabledComponentException(this);
         DeprecationSupport.warnOnce(ObjectType.METHOD, "setHttpServletReqest",
@@ -128,10 +128,10 @@ public final class CookieManager extends AbstractInitializableComponent {
         if (request != null && !(request instanceof ThreadLocalHttpServletRequestProxy)) {
             log.warn("Unsafe HttpServletRequest injected");
         }
-        httpRequestSupplier = new NonnullSupplier<>() {
+        httpRequestSupplier = new NonnullSupplier<HttpServletRequest>() {
             public HttpServletRequest get() {
                 return request;
-            };
+            }
         };
     }
 
@@ -164,7 +164,7 @@ public final class CookieManager extends AbstractInitializableComponent {
      *
      * @param response current HTTP response
      */
-    @Deprecated(since = "4.3", forRemoval = true)
+    @Deprecated
     public void setHttpServletResponse(@Nullable final HttpServletResponse response) {
         ComponentSupport.ifInitializedThrowUnmodifiabledComponentException(this);
 
@@ -173,10 +173,10 @@ public final class CookieManager extends AbstractInitializableComponent {
         if (response != null && !(response instanceof ThreadLocalHttpServletResponseProxy)) {
             log.warn("Unsafe HttpServletRequest injected");
         }
-        httpResponseSupplier = new NonnullSupplier<>() {
+        httpResponseSupplier = new NonnullSupplier<HttpServletResponse>() {
             public HttpServletResponse get() {
                 return response;
-            };
+            }
         };
     }
 

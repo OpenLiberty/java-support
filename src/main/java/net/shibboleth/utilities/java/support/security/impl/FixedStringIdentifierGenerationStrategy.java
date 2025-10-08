@@ -31,7 +31,7 @@ import net.shibboleth.utilities.java.support.security.IdentifierGenerationStrate
  * 
  * @deprecated
  */
-@Deprecated(since="8.4.0", forRemoval=true)
+@Deprecated
 public class FixedStringIdentifierGenerationStrategy implements IdentifierGenerationStrategy {
 
     /** Fixed identifier to use for all invocations. */

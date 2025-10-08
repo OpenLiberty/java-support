@@ -50,7 +50,7 @@ public final class BiPredicateSupport {
     @Nonnull public static <T,U> BiPredicate<T,U> fromBiFunction(
             @Nonnull final BiFunction<? super T, ? super U,Boolean> function,
             @Nonnull final BiPredicate<T,U> defValue) {
-        return new BiPredicate<>() {
+        return new BiPredicate<T,U>() {
             public boolean test(@Nullable final T input1, @Nullable final U input2) {
                 final Boolean result = function.apply(input1, input2);
                 return result != null ? result : defValue.test(input1, input2);

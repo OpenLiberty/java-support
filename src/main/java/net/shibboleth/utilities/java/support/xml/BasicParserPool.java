@@ -399,7 +399,7 @@ public class BasicParserPool extends AbstractInitializableComponent implements P
         if (newFeatures == null) {
             builderFeatures = Collections.emptyMap();
         } else {
-            builderFeatures = ImmutableMap.copyOf(Maps.filterKeys(newFeatures, Predicates.notNull()));
+            builderFeatures = Collections.unmodifiableMap(new HashMap<>(Maps.filterKeys(newFeatures, Predicates.notNull())));
         }
     }
 

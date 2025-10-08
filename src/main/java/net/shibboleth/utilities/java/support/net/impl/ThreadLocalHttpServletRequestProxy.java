@@ -60,7 +60,7 @@ import net.shibboleth.utilities.java.support.primitive.DeprecationSupport.Object
  * 
  * @deprecated
  */
-@Deprecated(since="8.4.0", forRemoval=true)
+@Deprecated
 public class ThreadLocalHttpServletRequestProxy implements HttpServletRequest {
 
     /** {@inheritDoc} */

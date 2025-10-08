@@ -44,7 +44,7 @@ public final class CollectionSupport {
      */
     public static <T> BinaryOperator<T> warningMergeFunction(final String what, final boolean takeFirst) {
         
-        return new BinaryOperator<>() {
+        return new BinaryOperator<T>() {
 
             public T apply(final T current, final T lookingAt) {
                 log.warn("Duplicate detected building {}", what);

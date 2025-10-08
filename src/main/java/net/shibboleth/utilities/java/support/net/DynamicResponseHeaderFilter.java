@@ -19,6 +19,7 @@ package net.shibboleth.utilities.java.support.net;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -90,7 +91,7 @@ public class DynamicResponseHeaderFilter implements Filter {
     public void setCallbacks(@Nullable @NonnullElements
             final Collection<Function<Pair<HttpServletRequest,HttpServletResponse>,Boolean>> theCallbacks) {
         if (theCallbacks != null) {
-            callbacks = List.copyOf(theCallbacks);
+            callbacks = Collections.unmodifiableList(new ArrayList<>(theCallbacks));
         } else {
             callbacks = Collections.emptyList();
         }

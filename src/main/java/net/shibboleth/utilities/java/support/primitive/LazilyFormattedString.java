@@ -29,7 +29,7 @@ import net.shibboleth.utilities.java.support.logic.Constraint;
  * 
  * @deprecated
  */
-@Deprecated(since="8.3.0", forRemoval=true)
+@Deprecated
 public class LazilyFormattedString {
 
     /** The template that is filled in with the values. */

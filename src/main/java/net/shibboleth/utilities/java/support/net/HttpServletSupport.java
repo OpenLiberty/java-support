@@ -18,6 +18,7 @@
 package net.shibboleth.utilities.java.support.net;
 
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale.LanguageRange;
@@ -160,7 +161,7 @@ public final class HttpServletSupport {
         final String languages = StringSupport.trimOrNull(request.getHeader("Accept-Language"));
         if (languages != null) {
             try {
-                return List.copyOf(LanguageRange.parse(languages));
+                return Collections.unmodifiableList(new ArrayList<>(LanguageRange.parse(languages)));
             } catch (final IllegalArgumentException e) {
                 LOG.warn("Could not parse provided languages '{}'", languages, e);
             }

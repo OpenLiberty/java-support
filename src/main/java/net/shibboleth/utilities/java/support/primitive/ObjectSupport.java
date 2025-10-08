@@ -34,7 +34,7 @@ public final class ObjectSupport {
      * 
      * @return the hash code for the object of 0 if the given object is null
      */
-    @Deprecated(forRemoval=true)
+    @Deprecated
     public static int hashCode(@Nullable final Object o) {
         if (o == null) {
             return 0;

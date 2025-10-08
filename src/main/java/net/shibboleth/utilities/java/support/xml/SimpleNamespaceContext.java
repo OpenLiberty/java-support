@@ -39,7 +39,7 @@ import com.google.common.collect.ImmutableBiMap.Builder;
  * 
  * @deprecated
  */
-@Deprecated(since="8.3.0",forRemoval=true)
+@Deprecated
 @ThreadSafe
 public class SimpleNamespaceContext implements NamespaceContext {
 

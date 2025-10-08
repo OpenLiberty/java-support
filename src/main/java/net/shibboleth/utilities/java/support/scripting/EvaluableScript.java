@@ -82,7 +82,7 @@ public final class EvaluableScript extends AbstractInitializableComponent {
      * @deprecated in 8.1
      * @throws ScriptException thrown if the scripting engine supports compilation and the script does not compile
      */
-    @Deprecated(forRemoval = true, since = "8.1.0")
+    @Deprecated
     public EvaluableScript(@ParameterName(name="engineName") @Nonnull @NotEmpty final String engineName,
             @ParameterName(name="scriptSource") @Nonnull @NotEmpty final String scriptSource)
             throws ScriptException {
@@ -103,7 +103,7 @@ public final class EvaluableScript extends AbstractInitializableComponent {
      * @deprecated in 8.1
      * @throws ScriptException thrown if the scripting engine supports compilation and the script does not compile
      */
-    @Deprecated(forRemoval = true, since = "8.1.0")
+    @Deprecated
     public EvaluableScript(@ParameterName(name="scriptSource") @Nonnull @NotEmpty final String scriptSource)
             throws ScriptException {
         this("javascript", scriptSource);
@@ -120,7 +120,7 @@ public final class EvaluableScript extends AbstractInitializableComponent {
      *             
      * @since 8.0.0
      */
-    @Deprecated(forRemoval = true, since = "8.1.0")
+    @Deprecated
     public EvaluableScript(@ParameterName(name="engineName") @Nonnull @NotEmpty final String engineName,
             @ParameterName(name="scriptSource") @Nonnull final Resource scriptSource)
             throws ScriptException {
@@ -149,7 +149,7 @@ public final class EvaluableScript extends AbstractInitializableComponent {
      * @deprecated in 8.1
      * @since 8.0.0
      */
-    @Deprecated(forRemoval = true, since = "8.1.0")
+    @Deprecated
     public EvaluableScript(@ParameterName(name="scriptSource") @Nonnull final Resource scriptSource)
             throws ScriptException {
         this("javascript", scriptSource);
@@ -164,7 +164,7 @@ public final class EvaluableScript extends AbstractInitializableComponent {
      * @throws ScriptException thrown if the script source file can not be read or the scripting engine supports
      *             compilation and the script does not compile
      */
-    @Deprecated(forRemoval = true, since = "8.1.0")
+    @Deprecated
     public EvaluableScript(@ParameterName(name="engineName") @Nonnull @NotEmpty final String engineName,
             @ParameterName(name="scriptSource") @Nonnull final InputStream scriptSource)
             throws ScriptException {
@@ -193,7 +193,7 @@ public final class EvaluableScript extends AbstractInitializableComponent {
      * @deprecated in 8.1
      * @since 8.0.0
      */
-    @Deprecated(forRemoval = true, since = "8.1.0")
+    @Deprecated
     public EvaluableScript(@ParameterName(name="scriptSource") @Nonnull final InputStream scriptSource)
             throws ScriptException {
         this("javascript", scriptSource);
@@ -208,7 +208,7 @@ public final class EvaluableScript extends AbstractInitializableComponent {
      * @throws ScriptException thrown if the script source file can not be read or the scripting engine supports
      *             compilation and the script does not compile
      */
-    @Deprecated(forRemoval = true, since = "8.1.0")
+    @Deprecated
     public EvaluableScript(@ParameterName(name="engineName") @Nonnull @NotEmpty final String engineName,
             @ParameterName(name="scriptSource") @Nonnull final File scriptSource)
             throws ScriptException {
@@ -251,7 +251,7 @@ public final class EvaluableScript extends AbstractInitializableComponent {
      * @deprecated in 8.1
      * @since 8.0.0
      */
-    @Deprecated(forRemoval = true, since = "8.1.0")
+    @Deprecated
     public EvaluableScript(@ParameterName(name="scriptSource") @Nonnull final File scriptSource)
             throws ScriptException {
         this("javascript", scriptSource);
@@ -433,7 +433,7 @@ public final class EvaluableScript extends AbstractInitializableComponent {
      * @throws ScriptException if there is a compilation issue.
      * @deprecated Remove in V9.0.0 
      */
-    @Deprecated(forRemoval = true, since = "8.1.0")
+    @Deprecated
     public void initializeWithScriptException() throws ScriptException {
 
         try {

@@ -20,6 +20,7 @@ package net.shibboleth.utilities.java.support.httpclient;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -513,7 +514,7 @@ public class HttpClientBuilder {
      * 
      * @deprecated use {@link #isConnectionStaleCheck()}
      */
-    @Deprecated(forRemoval=true)
+    @Deprecated
     public boolean isConnectionStalecheck() {
         return isConnectionStaleCheck();
     }
@@ -528,7 +529,7 @@ public class HttpClientBuilder {
      * 
      * @deprecated use {@link #setConnectionStaleCheck(boolean)}
      */
-    @Deprecated(forRemoval=true)
+    @Deprecated
     public void setConnectionStalecheck(final boolean check) {
         setConnectionStaleCheck(check);
     }
@@ -542,7 +543,7 @@ public class HttpClientBuilder {
      *     See {@link org.apache.http.impl.conn.PoolingHttpClientConnectionManager#setValidateAfterInactivity(int)}
      * 
      */
-    @Deprecated(forRemoval=true)
+    @Deprecated
     public boolean isConnectionStaleCheck() {
         return connectionStaleCheck;
     }
@@ -558,7 +559,7 @@ public class HttpClientBuilder {
      * @deprecated use a custom-configured connection pool manger.
      *     See {@link org.apache.http.impl.conn.PoolingHttpClientConnectionManager#setValidateAfterInactivity(int)}
      */
-    @Deprecated(forRemoval=true)
+    @Deprecated
     public void setConnectionStaleCheck(final boolean check) {
         connectionStaleCheck = check;
     }
@@ -872,7 +873,7 @@ public class HttpClientBuilder {
     public void setFirstRequestInterceptors(
             @Nullable @NonnullElements final List<HttpRequestInterceptor> interceptors) {
         if (interceptors != null) {
-            requestInterceptorsFirst = List.copyOf(interceptors);
+            requestInterceptorsFirst = Collections.unmodifiableList(new ArrayList<>(interceptors));
         } else {
             requestInterceptorsFirst = Collections.emptyList();
         }
@@ -895,7 +896,7 @@ public class HttpClientBuilder {
      */
     public void setLastRequestInterceptors(@Nullable @NonnullElements final List<HttpRequestInterceptor> interceptors) {
         if (interceptors != null) {
-            requestInterceptorsLast = List.copyOf(interceptors);
+            requestInterceptorsLast = Collections.unmodifiableList(new ArrayList<>(interceptors));
         } else {
             requestInterceptorsLast = Collections.emptyList();
         }
@@ -919,7 +920,7 @@ public class HttpClientBuilder {
     public void setFirstResponseInterceptors(
             @Nullable @NonnullElements final List<HttpResponseInterceptor> interceptors) {
         if (interceptors != null) {
-            responseInterceptorsFirst = List.copyOf(interceptors);
+            responseInterceptorsFirst = Collections.unmodifiableList(new ArrayList<>(interceptors));
         } else {
             responseInterceptorsFirst = Collections.emptyList();
         }
@@ -943,7 +944,7 @@ public class HttpClientBuilder {
     public void setLastResponseInterceptors(
             @Nullable @NonnullElements final List<HttpResponseInterceptor> interceptors) {
         if (interceptors != null) {
-            responseInterceptorsLast = List.copyOf(interceptors);
+            responseInterceptorsLast = Collections.unmodifiableList(new ArrayList<>(interceptors));
         } else {
             responseInterceptorsLast = Collections.emptyList();
         }
@@ -966,7 +967,7 @@ public class HttpClientBuilder {
      */
     public void setStaticContextHandlers(@Nullable @NonnullElements final List<HttpClientContextHandler> handlers) {
         if (handlers != null) {
-            staticContextHandlers = List.copyOf(handlers);
+            staticContextHandlers = Collections.unmodifiableList(new ArrayList<>(handlers));
         } else {
             staticContextHandlers = Collections.emptyList();
         }

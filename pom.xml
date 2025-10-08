@@ -19,6 +19,7 @@
     <properties>
         <shibboleth.projectName>java-support</shibboleth.projectName>
         <automatic.module.name>net.shibboleth.utilities.java.support</automatic.module.name>
+        <maven.compiler.release>8</maven.compiler.release>
     </properties>
 
     <dependencies>
@@ -150,10 +151,53 @@
                 </dependency>
             </dependencies>
         </profile>
+
+        <profile>
+            <id>disable-custom-enforcer-on-jdk8</id>
+            <activation><jdk>[1.8,1.9)</jdk></activation>
+            <build>
+            <plugins>
+                <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <executions>
+                    <execution>
+                    <id>M2-enforce</id>
+                    <configuration combine.self="override">
+                        <skip>true</skip>
+                    </configuration>
+                    </execution>
+                </executions>
+                </plugin>
+            </plugins>
+            </build>
+        </profile>
     </profiles>
 
     <build>
         <plugins>
+            <!-- Configure compiler plugin to explicitly use source/target 1.8 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.14.0</version>
+                <configuration>
+                    <release>${maven.compiler.release}</release>
+                </configuration>
+                <!-- Skip compiling tests -->
+                <executions>
+                    <execution>
+                    <id>default-testCompile</id>
+                    <phase>test-compile</phase>
+                    <goals>
+                        <goal>testCompile</goal>
+                    </goals>
+                    <configuration>
+                        <skip>true</skip>
+                    </configuration>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
